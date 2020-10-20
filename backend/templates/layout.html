@@ -14,10 +14,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{{url_for('home')}}">Cinésalles <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Séances</a>
+                <a class="nav-link" href="{{url_for('seance')}}">Séances</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -29,33 +29,16 @@
                 </div>
             </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
+            <!-- <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
+            </form> -->
         </div>
-        </nav>
-
-        <div class="container">
-            <h1>Séances</h1>
-            <div class="row row-cols-1 row-cols-md-3">
-                {% for data in data %}
-                    <div class="col mb-2">
-                        <div class="card text-white bg-dark " >
-                            <div class="card-body">
-                            <h5 class="card-title">{{ data.fields.annee}}</h5>
-                            <p class="card-text"><b>Recette guichet : </b> {{ data.fields.recette_guichet_meu_courants}}</p>
-                            <p><b>recette moyenne par entree :</b> {{ data.fields.recette_moyenne_par_entree_eu }} Euros</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-                    <h1></h1>
-                {% endfor %}
-            </div>
-        </div>
-      
-
+    </nav>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+    
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" 
     integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" 
