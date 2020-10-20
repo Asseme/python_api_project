@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import requests
 import json
 import urllib.parse
@@ -17,7 +17,21 @@ def home():
 
 @app.route('/seances')
 def seance():
-    return render_template('seances.html',data=data)
+    datas=dataset[0][2]
+    return render_template('seances.html',datas=datas,data=data)
+
+
+@app.route('/searchSeances')
+def searcheances():
+    datas=dataset[0][2]
+    # data=dataset[0][2]
+    for d in datas :
+        if(request.args.get('annee') == d['fields']['annee']):
+            datas = []
+            datas.append(d)
+            
+    return render_template('seances.html',datas=datas,data=data)
+
 
 if __name__ == '__main__':
     app.run( debug = True )
