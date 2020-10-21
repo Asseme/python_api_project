@@ -32,7 +32,9 @@
                 <button class="btn btn-outline-primary " type="submit">Valider</button>
         </form>
         </p>
+        {%if bar%}
         <div class="container" align="left">
                 <embed type="image/svg+xml" src={{bar|safe}} style='max-width:1000px'/>
         </div>
+        {%endif%}
 {% endblock content %}
