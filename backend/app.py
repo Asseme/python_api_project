@@ -3,7 +3,8 @@ import requests
 import json
 import urllib.parse
 import pandas as pd
-import pygal 
+import pygal
+
 
 app = Flask(__name__)
 
@@ -37,6 +38,7 @@ def searcheances():
             
     return render_template('seances.html',datas=datas,data=data)
 
+
 @app.route('/details/<string:annee>')
 def details(annee):
     datas=dataset[0][2]
@@ -44,8 +46,25 @@ def details(annee):
     for d in datas:
         if(annee == d['fields']['annee']):
             data = d
-            
+
     return render_template('details.html',datas=data)
+
+@app.route('/affluences')
+def affluence():
+    datas=dataset[0][2]
+    return render_template('affluences.html',datas=datas,data=data)
+
+
+@app.route('/searchAffluences')
+def searchAffluence():
+    datas=dataset[0][2]
+    # data=dataset[0][2]
+    for d in datas :
+        if(request.args.get('annee') == d['fields']['annee']):
+            datas = []
+            datas.append(d)
+            
+    return render_template('affluences.html',datas=datas,data=data)
 
 
 @app.route('/viz_seances_milliers')
