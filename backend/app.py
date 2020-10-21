@@ -3,6 +3,7 @@ import requests
 import json
 import urllib.parse
 import pandas as pd
+import pygal 
 
 app = Flask(__name__)
 
@@ -32,6 +33,15 @@ def searcheances():
             
     return render_template('seances.html',datas=datas,data=data)
 
+@app.route('/details/<string:annee>')
+def details(annee):
+    datas=dataset[0][2]
+    data = 0
+    for d in datas:
+        if(annee == d['fields']['annee']):
+            data = d
+            
+    return render_template('details.html',datas=data)
 
 if __name__ == '__main__':
     app.run( debug = True )
