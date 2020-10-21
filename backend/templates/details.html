@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block content %}
+    <!-- <p>{{datas}}</p> -->
+    <div class="card text-center" style="margin-top: 100px;">
+        <div class="card-header">
+        </div>
+        <div class="card-body">
+        <h5 class="card-title">{{datas.fields.annee}}</h5>
+        <p class="card-text">Entrée en millions : {{datas.fields.entrees_millions}}</p>
+        <p class="card-text">Recette guichet en millions d'euros : {{datas.fields.recette_guichet_meu_courants}}</p>
+        <p class="card-text">Recette moyenne par entrée en euros : {{datas.fields.recette_moyenne_par_entree_eu}}</p>
+        <p class="card-text">Nombre de séances en milliers : {{datas.fields.seances_milliers}}</p>
+        </div>
+        <div class="card-footer text-muted">
+        Details
+        </div>
+    </div>
+{% endblock content %}

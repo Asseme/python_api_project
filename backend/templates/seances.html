@@ -18,16 +18,15 @@
     </p>
     <div class="row row-cols-1 row-cols-md-3">
         {% for data in datas %}
-            <div class="col mb-2">
+            <div class="col mb-1">
                 <div class="card text-white bg-dark " >
                     <div class="card-body">
                     <h5 class="card-title">{{ data.fields.annee}}</h5>
                     <p><b>Nombre de séances en milliers :</b> {{ data.fields.seances_milliers }}</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <a href="{{url_for('details',annee= data.fields.annee)}}" class="btn btn-primary">Go somewhere</a>
                     </div>
                 </div>
             </div>
-            <h1></h1>
         {% endfor %}
     </div>
 {% endblock content %}

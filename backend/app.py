@@ -4,6 +4,7 @@ import json
 import urllib.parse
 import pandas as pd
 
+
 app = Flask(__name__)
 
 jsons = requests.get("https://data.culture.gouv.fr/api/records/1.0/search/?dataset=frequentation-dans-les-salles-de-cinema&q=&rows=100&sort=annee&facet=annee").json()
@@ -31,6 +32,17 @@ def searcheances():
             datas.append(d)
             
     return render_template('seances.html',datas=datas,data=data)
+
+
+@app.route('/details/<string:annee>')
+def details(annee):
+    datas=dataset[0][2]
+    data = 0
+    for d in datas:
+        if(annee == d['fields']['annee']):
+            data = d
+
+    return render_template('details.html',datas=data)
 
 @app.route('/affluences')
 def affluence():
