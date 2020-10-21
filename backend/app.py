@@ -32,6 +32,23 @@ def searcheances():
             
     return render_template('seances.html',datas=datas,data=data)
 
+@app.route('/affluences')
+def affluence():
+    datas=dataset[0][2]
+    return render_template('affluences.html',datas=datas,data=data)
+
+
+@app.route('/searchAffluences')
+def searchAffluence():
+    datas=dataset[0][2]
+    # data=dataset[0][2]
+    for d in datas :
+        if(request.args.get('annee') == d['fields']['annee']):
+            datas = []
+            datas.append(d)
+            
+    return render_template('affluences.html',datas=datas,data=data)
+
 
 if __name__ == '__main__':
     app.run( debug = True )
