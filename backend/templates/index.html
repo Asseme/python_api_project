@@ -1,4 +1,38 @@
 {% extends "layout.html" %}
 {% block content %}
         <h1>Home</h1>
+        <p>
+        <form class="my-2 my-lg-0" method="GET" action="viz_seances_milliers"> 
+                <div class="form-group">
+                        <label for="critere">Selectionnez un type de visualisation</label>
+                        <select class="form-control" id="type" name="type">
+                                {% for type in types %}
+                                <option>{{ type }}</option>
+                                {% endfor %}
+                        </select>
+                        <label for="critere">Selectionnez un Critère</label>
+                        <select class="form-control" id="critere" name="critere">
+                                {% for field in fields %}
+                                <option>{{ field }}</option>
+                                {% endfor %}
+                        </select>
+                        <label for="start">Selectionnez une Année</label>
+                        <select class="form-control" id="start" name="start">
+                                {% for data in data %}
+                                <option>{{ data.fields.annee}}</option>
+                                {% endfor %}
+                        </select>
+                        <label for="step">Intervalle</label>
+                        <select class="form-control" id="step" name="step">
+                                {% for i in range(40) %}
+                                <option>{{ i }}</option>
+                                {% endfor %}
+                        </select>
+                </div>
+                <button class="btn btn-outline-primary " type="submit">Valider</button>
+        </form>
+        </p>
+        <div class="container" align="left">
+                <embed type="image/svg+xml" src={{bar|safe}} style='max-width:1000px'/>
+        </div>
 {% endblock content %}
