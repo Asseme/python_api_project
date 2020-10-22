@@ -3,6 +3,7 @@ import requests
 import json
 import urllib.parse
 import pandas as pd
+import pygal
 
 app = Flask(__name__)
 
@@ -32,6 +33,23 @@ def searcheances():
             
     return render_template('seances.html',datas=datas,data=data)
 
+
+@app.route('/evoRecette')
+def evoRecette():
+    datas=dataset[0][2]
+    return render_template('evoRecette.html',datas=datas,data=data)
+    
+
+@app.route('/searchRecette')
+def searchRecette():
+    datas=dataset[0][2]
+    # data=dataset[0][2]
+    for d in datas :
+        if(request.args.get('annee') == d['fields']['annee']):
+            datas = []
+            datas.append(d)
+            
+    return render_template('evoRecette.html',datas=datas,data=data)    
 
 if __name__ == '__main__':
     app.run( debug = True )
