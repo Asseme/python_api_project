@@ -111,5 +111,40 @@ def viz_seances_milliers():
         bar=line_chart.render_data_uri()
     return render_template('index.html',data=data,bar=bar,fields=criteres,types=types)
 
+@app.route('/comparer')
+def comparer():
+    return render_template('comparer.html',fields=criteres,data=data)
+
+@app.route('/comparaison')
+def comparaison():
+    start=0
+    end=0
+    datas=dataset[0][2]
+    if(request.args.get('type') == "stackedbar"):
+        bar_chart = pygal.StackedBar(style=NeonStyle)
+        bar_chart.title = request.args.get('critere')
+        bar_chart.x_labels = map(str, range(int(request.args.get('start')), int(request.args.get('end'))))
+        for i in range(len(data)):
+            if(data[i]['fields']['annee']==request.args.get('start')):
+                start = i
+            if(data[i]['fields']['annee']==request.args.get('end')):
+                end = i
+        bar_chart.add(request.args.get('start'), [data[start]['fields'][request.args.get('critere')]])
+        bar_chart.add(request.args.get('end'), [data[end]['fields'][request.args.get('critere')]])
+        bar = bar_chart.render_data_uri()
+    else:
+        bar_chart = pygal.Bar(style=NeonStyle)
+        bar_chart.title = request.args.get('critere')
+        bar_chart.x_labels = map(str, range(int(request.args.get('start')), int(request.args.get('end'))))
+        for i in range(len(data)):
+            if(data[i]['fields']['annee']==request.args.get('start')):
+                start = i
+            if(data[i]['fields']['annee']==request.args.get('end')):
+                end = i
+        bar_chart.add(request.args.get('start'), [data[start]['fields'][request.args.get('critere')]])
+        bar_chart.add(request.args.get('end'), [data[end]['fields'][request.args.get('critere')]])
+        bar = bar_chart.render_data_uri()
+    return render_template('comparer.html',datas=datas,bar=bar,fields=criteres,data=data)
+
 if __name__ == '__main__':
     app.run( debug = True )
