@@ -45,8 +45,6 @@ def evoRecette():
     return render_template('evoRecette.html',datas=datas,data=data)
     
 
-@app.route('/searchRecette')
-def searchRecette():
 @app.route('/details/<string:annee>')
 def details(annee):
     datas=dataset[0][2]
@@ -72,8 +70,19 @@ def searchAffluence():
             datas = []
             datas.append(d)
     
-    return render_template('evoRecette.html',datas=datas,data=data)    
     return render_template('affluences.html',datas=datas,data=data)
+
+@app.route('/searchRecette')
+def searchRecette():
+    datas=dataset[0][2]
+    # data=dataset[0][2]
+    for d in datas :
+        if(request.args.get('annee') == d['fields']['annee']):
+            datas = []
+            datas.append(d)
+    
+    return render_template('evoRecette.html',datas=datas,data=data)
+
 
 
 @app.route('/viz_seances_milliers')

@@ -18,11 +18,12 @@
     </p>
     <div class="row row-cols-1 row-cols-md-3">
         {% for data in datas %}
-            <div class="col mb-2">
+            <div class="col mb-1">
                 <div class="card text-white bg-dark " >
                     <div class="card-body">
                     <h5 class="card-title">{{ data.fields.annee}}</h5>
-                    <p><b>Prix :</b> {{ data.fields.recette_moyenne_par_entree_eu }} euros</p>
+                    <p>Prix d'entrée moyen :</b> {{ data.fields.recette_moyenne_par_entree_eu }} euros </p>
+                    <a href="{{url_for('details',annee= data.fields.annee)}}" class="btn btn-primary">Détails</a>
                     </div>
                 </div>
             </div>
