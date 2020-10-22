@@ -39,6 +39,14 @@ def searcheances():
     return render_template('seances.html',datas=datas,data=data)
 
 
+@app.route('/evoRecette')
+def evoRecette():
+    datas=dataset[0][2]
+    return render_template('evoRecette.html',datas=datas,data=data)
+    
+
+@app.route('/searchRecette')
+def searchRecette():
 @app.route('/details/<string:annee>')
 def details(annee):
     datas=dataset[0][2]
@@ -63,7 +71,8 @@ def searchAffluence():
         if(request.args.get('annee') == d['fields']['annee']):
             datas = []
             datas.append(d)
-            
+    
+    return render_template('evoRecette.html',datas=datas,data=data)    
     return render_template('affluences.html',datas=datas,data=data)
 
 
