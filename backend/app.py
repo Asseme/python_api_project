@@ -4,8 +4,8 @@ import json
 import urllib.parse
 import pandas as pd
 import pygal
-
-
+from pygal.style import DarkStyle
+from pygal.style import NeonStyle
 app = Flask(__name__)
 
 jsons = requests.get("https://data.culture.gouv.fr/api/records/1.0/search/?dataset=frequentation-dans-les-salles-de-cinema&q=&rows=100&sort=annee&facet=annee").json()
@@ -70,7 +70,7 @@ def searchAffluence():
 @app.route('/viz_seances_milliers')
 def viz_seances_milliers():
     if(request.args.get('type') == "bar"):
-        bar_chart = pygal.Bar()
+        bar_chart = pygal.Bar(style=NeonStyle)
         bar_chart.title = request.args.get('critere')
         l=list()
         for j in range(len(data)):
@@ -81,7 +81,7 @@ def viz_seances_milliers():
         bar_chart.add(request.args.get('critere'),  l)
         bar=bar_chart.render_data_uri()
     else:
-        line_chart = pygal.Line()
+        line_chart = pygal.Line(style=NeonStyle)
         line_chart.title = request.args.get('critere')
         l=list()
         for j in range(len(data)):
