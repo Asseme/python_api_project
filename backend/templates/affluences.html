@@ -1,8 +1,8 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h1>Séances</h1>
+    <h1>Affluences</h1>
     <p>
-        <form class="my-2 my-lg-0" method="GET" action="searchSeances"> 
+        <form class="my-2 my-lg-0" method="GET" action="searchAffluences"> 
             <div class="form-group">
               <label for="annee">Selectionnez une Année</label>
               <select class="form-control" id="annee" name="annee">
@@ -22,8 +22,8 @@
                 <div class="card text-white bg-dark " >
                     <div class="card-body">
                     <h5 class="card-title">{{ data.fields.annee}}</h5>
-                    <p><b>Nombre de séances en milliers :</b> {{ data.fields.seances_milliers }}</p>
-                    <a href="{{url_for('details',annee= data.fields.annee)}}" class="btn btn-primary">Go somewhere</a>
+                    <p><b>Nombre d'entrées en millions :</b> {{ data.fields.entrees_millions }}</p>
+                    <a href="{{url_for('details',annee= data.fields.annee)}}" class="btn btn-primary">Détails</a>
                     </div>
                 </div>
             </div>
